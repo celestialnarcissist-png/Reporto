@@ -17,6 +17,19 @@ const reportSchema = new Schema({
    category:{
    type: String,
    required: true
+   },
+   location:{
+      type: String,
+      required: true
+   },
+   status:{
+      type:String,
+      required: true
+   },
+   priority:{
+      type:String,
+      required: true
+
    }
 },
 {timestamps: true}
