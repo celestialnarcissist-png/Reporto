@@ -25,8 +25,12 @@ const userSchema = new Schema({
     ref: "Report"
    }],
    profilePhoto:{
-      type: String // Cloudinary url
-      required: true
+         url: { type: String, required: true },
+         public_id: { type: String }
+   },
+   password:{
+      type: String,
+      required: true ["Password is required"]
    }
 
 

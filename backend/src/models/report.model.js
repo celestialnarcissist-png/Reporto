@@ -8,11 +8,28 @@ const reportSchema = new Schema({
     trim: true
    },
    photos:{
-    type: String
+    type: Object
    },
    reportedBy:{
     type: Schema.type.ObjectId,
     ref: "User"
+   },
+   category:{
+   type: String,
+   required: true
+   },
+   location:{
+      type: String,
+      required: true
+   },
+   status:{
+      type:String,
+      required: true
+   },
+   priority:{
+      type:String,
+      required: true
+
    }
 },
 {timestamps: true}
