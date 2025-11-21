@@ -37,6 +37,11 @@ const userSchema = new Schema(
       type: String,
       required: true["Password is required"],
     },
+    Points: {
+      type: Number,
+      required: true,
+      default: 0,
+    },
   },
   { timestamps: true }
 );
