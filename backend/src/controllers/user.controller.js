@@ -309,6 +309,66 @@ const updateProfilePhoto = asyncHandler(async(req,res) =>{
   }
 };
 
+const getUser = asyncHandler(async(req,res) =>{
+  return res
+  .status(200)
+  .json(new ApiResponse(200,req.user, "User fetched successfully"))
+
+})
+
+const getReport = asyncHandler(async(req,res) => {
+    const {username} = req.params
+
+    if(!username?.trim()){
+        throw new ApiError(400, "username is missing")
+    }
+    const post = await User.aggregate([
+
+        {
+            $match: {
+                username: { $regex: `^${username}$`, $options: "i" }
+            }
+        },
+        {
+            $lookup: {
+                from: "report",
+                localField: "_id",
+                foreignField: "reportedBy",
+                as: "reports"
+            }
+        },
+        {
+            $addFields:{
+                reportCount:{
+                    $size: "$reports"
+                }
+            }
+        },
+        {
+            $project:{
+                fullName:1,
+                username:1,
+                reportCount:1,
+                profilePhoto:1,
+                email:1,
+                report:1
+            }
+        }
+    ])
+
+    if(!report?.length){
+        throw new ApiError(404, "User or Reports not found")
+    }
+
+    return res
+    .status(200)
+    .json(
+        new ApiResponse(200, post[0], "Reports fetched successfully")
+    )
+})
+
+
+
 
 
 

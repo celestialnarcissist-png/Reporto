@@ -22,10 +22,12 @@ const userSchema = new Schema({
     required: true,
     trim: true
    },
-   report:[{
-    type: Schema.types.ObjectId,
-    ref: "Report"
-   }],
+   report:[
+      {
+      type: Schema.types.ObjectId,
+      ref: "Report"
+    }
+   ],
    profilePhoto:{
          url: { type: String, required: true },
          public_id: { type: String }
