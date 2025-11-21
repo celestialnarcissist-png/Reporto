@@ -11,7 +11,7 @@ const reportSchema = new Schema({
     type: Object
    },
    reportedBy:{
-    type: Schema.type.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: "User"
    },
    category:{

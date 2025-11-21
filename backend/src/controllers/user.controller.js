@@ -320,9 +320,9 @@ const getReport = asyncHandler(async(req,res) => {
     const {username} = req.params
 
     if(!username?.trim()){
-        throw new ApiError(400, "username is missing")
+        throw new ApiError(400, "Username is missing")
     }
-    const post = await User.aggregate([
+    const report = await User.aggregate([
 
         {
             $match: {
@@ -331,7 +331,7 @@ const getReport = asyncHandler(async(req,res) => {
         },
         {
             $lookup: {
-                from: "report",
+                from: "reports",
                 localField: "_id",
                 foreignField: "reportedBy",
                 as: "reports"
@@ -351,7 +351,7 @@ const getReport = asyncHandler(async(req,res) => {
                 reportCount:1,
                 profilePhoto:1,
                 email:1,
-                report:1
+                reports:1
             }
         }
     ])
@@ -363,7 +363,7 @@ const getReport = asyncHandler(async(req,res) => {
     return res
     .status(200)
     .json(
-        new ApiResponse(200, post[0], "Reports fetched successfully")
+        new ApiResponse(200, report[0], "Reports fetched successfully")
     )
 })
 
