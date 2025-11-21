@@ -307,7 +307,7 @@ const updateProfilePhoto = asyncHandler(async(req,res) =>{
     console.error(error);
     return res.status(500).json(new ApiResponse(500,"Error deleting profile"));
   }
-};
+}
 
 const getUser = asyncHandler(async(req,res) =>{
   return res
@@ -367,7 +367,15 @@ const getReport = asyncHandler(async(req,res) => {
     )
 })
 
-
+export {registerUser,
+        loginUser,
+        logoutUser,
+        updatePassword,
+        updateProfile,
+        updateProfilePhoto,
+        getUser,
+        getReport
+}
 
 
 
