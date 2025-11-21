@@ -36,8 +36,8 @@ const userSchema = new Schema({
       type: String,
       required: true ["Password is required"]
    },
-   {
-      points:Number,
+   points:{
+      type:Number,
       default:0
    }
 
